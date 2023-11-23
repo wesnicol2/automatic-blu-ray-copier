@@ -19,14 +19,7 @@ def detect_blu_ray_insertion():
                 return device.device_node
 
 def copy_blu_ray_contents(device_node, destination_path):
-    logger = logging.getLogger('blu_ray_copy')
-    logger.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-
-    # Create a file handler and set the formatter
-    file_handler = logging.FileHandler(LOG_FILE_PATH)
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
+    
 
     try:
         logging.info(f"Copying Blu-ray contents from {device_node} to {destination_path}...")
@@ -38,7 +31,20 @@ def copy_blu_ray_contents(device_node, destination_path):
     except Exception as ex:
         logging.error(f"An unexpected error occurred: {ex}")
 
+
+def setupLogging():
+    logger = logging.getLogger('blu_ray_copy')
+    logger.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
+    # Create a file handler and set the formatter
+    file_handler = logging.FileHandler(LOG_FILE_PATH)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+
+    
 if __name__ == "__main__":
+    setupLogging()
     while True:
         logging.info("Waiting for a Blu-ray disk to be inserted...")
         inserted_device = detect_blu_ray_insertion()
