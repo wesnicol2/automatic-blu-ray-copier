@@ -4,8 +4,8 @@ import logging
 import time
 
 # Constants
-LOG_FILE_PATH = '/path/to/logfile.log'
-DESTINATION_PATH = '/path/to/destination'  # Replace with desired destination path
+LOG_FILE_PATH = './log/logfile.log'
+DESTINATION_PATH = ' /mnt/media-drive/Media/blu-ray-archive/'  # Replace with desired destination path
 
 def detect_blu_ray_insertion():
     context = pyudev.Context()
